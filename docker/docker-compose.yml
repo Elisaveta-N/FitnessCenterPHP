@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+    apache:
+        build:
+            context: ./apache
+        environment:
+            - APACHE_RUN_USER=www-data
+        restart: always
+        ports:
+            - "8080:80"
+        working_dir: "/var/www/html"
+        volumes:
+            #- ./apache/www:/var/www/html
+            - ./apache/log:/var/log/apache2
+        depends_on:
+            - postgres
+        container_name: apache
+        hostname: apache
+    
+    postgres:
+         image: postgres
+         restart: always
+         environment:
+             POSTGRES_PASSWORD: postgres
+             POSTGRES_DB: fitness
+         container_name: postgres
+         hostname: postgres
+         volumes:
+             - ./postgres/dump:/docker-entrypoint-initdb.d
+         expose:
+             - "5555" # Publishes 5555 to other containers but NOT to host machine
+         ports:
+             - "5555:5555"
+         command: -p 5555
+
+    redis:
+         image: redis
+         restart: always
+         ports:
+             - '6379:6379'
+         command: redis-server --save 60 1 --loglevel warning
+         volumes: 
+             - ./redis/dbdata:/data
+         container_name: redis
+         hostname: redis   
+
+           
+    # curl:
+    #     image: praqma/network-multitool
+    #     restart: always
+    #     container_name: curl
+    #     hostname: curl
+        
+    # nginx:
+    #     image: nginx
+    #     restart: always
+    #     ports:
+    #         - "80:80"
+    #     depends_on:
+    #         - golang
+    #     container_name: nginx    
+    #     hostname: nginx
+    #     volumes:
+    #         - ./nginx/src:/usr/share/nginx/html
+    #         - ./nginx/templates:/etc/nginx/templates
+    #         - ./nginx/log:/var/log/nginx
+    #     environment:
+    #         - NGINX_NAME=nginx

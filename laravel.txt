@@ -1,0 +1,175 @@
+Настройка локальных Apache PHP и Composer
+https://apache-windows.ru/%D0%BA%D0%B0%D0%BA-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C-%D0%B2%D0%B5%D0%B1-%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80-apache-c-php-mysql-%D0%B8-phpmyadmin-%D0%BD%D0%B0-windows/
+
+Запуск Laravel в Docker
+https://inovector.com/blog/minimal-configuration-docker-to-run-laravel-application
+
+https://devops.tutorials24x7.com/blog/containerize-laravel-with-apache-mysql-and-mongodb-using-docker-containers
+
+расширения для VS Code
+https://www.youtube.com/watch?v=_dL1tgEnR7s
+
+Laravel Extension Pack
+Duplicate action
+PHP Namespace Resolver
+rainbow brackets
+Laravel Blade Spacer
+
+Настройка XDebug
+https://www.youtube.com/watch?v=HrQWtbxY1Hs&t=535s
+
+
+
+
+Создание проекта
+composer create-project laravel/laravel fitnesscenter
+
+запуск проекта
+php artisan serve
+
+создать Контроллер
+php artisan make:controller TestController
+
+сделать модель и связанную с ней миграцию
+php artisan make:model Test -m
+
+
+накатить миграции
+php artisan migrate
+откатить миграцию
+php artisan migrate:rollback
+перенакатить все миграции
+php artisan migrate:fresh
+добавить колонку к таблице
+php artisan make:migration add_column_duration_to_tests_table
+php artisan make:migration delete_column_duration_to_tests_table
+php artisan make:migration add_constraints_to_tests_table
+
+php artisan make:migration edit_column_duration_to_tests_table
+для переименования колонок нужно установить дополнительный компонент
+composer require doctrine/dbal
+
+создание Request
+php artisan make:request Test/TestStoreRequest
+
+создать фабрику
+php artisan make:factory TestFactory -m Test
+php artisan make:factory TagFactory -m Tag
+php artisan make:factory CategoryFactory -m Category
+
+Запуск seedов
+php artisan migrate --seed
+
+Для работы с пользователями
+
+composer require laravel/ui
+php artisan ui:auth
+php artisan make:middleware AdminPanelMiddleware
+php artisan make:policy AdminPolicy -m User
+
+
+https://github.com/laravel/ui
+composer require laravel/ui
+php artisan ui bootstrap
+php artisan ui bootstrap --auth
+
+npm install
+npm run dev
+
+добавляем столбец роль в таблицу с пользователями
+php artisan make:migration add_column_role_to_users_table
+добавляем Middleware
+php artisan make:middleware TempRouteMiddleware
+добавляем Policy
+php artisan make:policy TempPolicy -m User
+
+@can('view', auth()->user())
+
+@endcan
+
+https://www.laravelia.com/post/laravel-10-jwt-complete-api-authentication-tutorial
+
+php artisan make:middleware SetDriverApiGuardMiddleware
+
+========================================================================
+
+
+
+php artisan make:model Activity -m
+php artisan make:model Slot -m
+
+
+//php artisan make:migration create_user_slot_table --create
+php artisan make:model UserSlot -m
+
+
+php artisan migrate
+
+php artisan make:controller Activity/IndexController
+php artisan make:controller Activity/CreateController
+php artisan make:controller Activity/StoreController
+php artisan make:controller Activity/ShowController
+php artisan make:controller Activity/EditController
+php artisan make:controller Activity/UpdateController
+php artisan make:controller Activity/DestroyController
+
+php artisan make:request Activity/StoreRequest
+php artisan make:request Activity/UpdateRequest
+
+https://github.com/laravel/ui
+composer require laravel/ui
+php artisan ui bootstrap
+php artisan ui bootstrap --auth
+
+//rest API codes
+https://www.arubanetworks.com/techdocs/AOS-S/16.10/RESTAPI/content/rest%20api/del-res-htt-sta-cod-ret-by-res.htm
+
+Создаем сервисы (вручную)
+
+Добавляем базовый контроллер с заинджекченным сервисом базы данных
+php artisan make:controller ActivityBaseController
+
+//php artisan make:factory ActivityFactory -m Activity -не применяем в данном случае
+php artisan make:seeder ActivitySeeder
+php artisan make:seeder UserSeeder
+
+php artisan migrate --seed
+
+php artisan make:controller SlotBaseController
+
+php artisan make:request Slot/StoreRequest
+
+php artisan make:controller UserSlot/StoreController
+php artisan make:request UserSlot/StoreRequest
+
+php artisan make:controller UserSlotBaseController
+
+php artisan make:controller Slot/Admin/IndexController
+php artisan make:controller Slot/Admin/StoreController
+php artisan make:controller Slot/Admin/DestroyController
+
+
+php artisan make:request Slot/Admin/StoreRequest
+
+php artisan make:policy AuthenticatedPolicy -m User
+php artisan make:policy AdminPolicy -m User
+$this->authorize('view', auth()->user());
+
+
+php artisan make:controller API/AuthController
+
+php artisan make:middleware SetDriverApiGuardMiddleware
+
+
+
+
+
+
+
+
+
+
+
+
+
+

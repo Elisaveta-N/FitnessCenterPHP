@@ -1,0 +1,9 @@
+{
+    "host": "localhost",
+    "port": "8888",
+	"cookie_name": "session_token",
+	"uri": "mongodb://mongo:27017",
+	"db_name": "myfiles",
+	"coll_name": "fs.files",
+	"local_path": "C:/Tmp/Download"
+}
