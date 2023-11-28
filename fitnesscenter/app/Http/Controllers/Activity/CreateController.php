@@ -10,6 +10,6 @@ class CreateController extends ActivityBaseController
 {
     public function __invoke()
     {
-        return "Hello from Activity CreteController";
+        return "Hello from Activity CreateController";
     }
 }

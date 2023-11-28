@@ -11,7 +11,7 @@ class DestroyController extends SlotBaseController
 {
     public function __invoke(Slot $slot)
     {
-        dd($slot);
+        //dd($slot);
         return "Hello from Slots  Controller";
     }
 }
